@@ -1,0 +1,77 @@
+body {
+    background: white;
+}
+
+section{
+    background: whitesmoke;
+}
+
+@media only screen and (max-width: 768px) {
+    .main{
+        display: grid;
+        margin: auto auto;
+        grid-template-areas:
+            'meno'
+            'narodenie'
+            'pohlavie'
+            'drop-downy'
+            'cislo-mail'
+            'dalsie'
+            'poziadavky'
+            'odoslat';
+    }
+}
+
+@media only screen and (min-width: 769px) {
+    .main{
+        display: grid;
+        margin: auto auto;
+        grid-template-areas:
+        'meno narodenie'
+        'pohlavie cislo-mail'
+        'drop-downy'
+        'dalsie poziadavky'
+        'odoslat';
+
+    }
+}
+
+.meno{
+    grid-area: meno;
+    margin: auto auto auto auto;
+}
+
+.narodenie{
+    grid-area: narodenie;
+    margin: auto auto auto auto;
+}
+
+.pohlavie{
+    grid-area: pohlavie;
+    margin: auto auto auto auto;
+}
+
+.drop-downy{
+    grid-area: drop-downy;
+    margin: auto auto auto auto;
+}
+
+.cislo-mail{
+    grid-area: cislo-mail;
+    margin: auto auto auto auto;
+}
+
+.dalsie{
+    grid-area: dalsie;
+    margin: auto auto auto auto;
+}
+
+.poziadavky{
+    grid-area: poziadavky;
+    margin: auto auto auto auto;
+}
+
+.odoslat{
+    grid-area: odoslat;
+    margin: auto auto auto auto;
+}
