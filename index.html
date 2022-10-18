@@ -2,18 +2,19 @@
 <html lang="sk">
 <head>
     <meta charset="UTF-8">
-    <title>Formulár</title>
+    <title>Wellness formulár</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
 <header>
-    <h1>Zadanie 2 Webové Technológie 1</h1>
+    <h1>Objednávka wellness služieb</h1>
 </header>
 
-<section >
-    <h2>Objednávka wellness služieb</h2>
+<section>
+
+    <h3>Osobné údaje</h3>
 
     <form class="main" action="#" method="post">
 
@@ -26,98 +27,120 @@
         <input type="hidden">
 
         <div class="meno">
-            <label>*Meno:
-                <input type="text">
+            <label >*Meno:
+                <input type="text" placeholder="Krstné meno" required>
             </label>
-
             <label>*Priezvisko:
-                <input type="text">
+                <input type="text" placeholder="Vaše priezvisko" required>
             </label>
         </div>
 
-        <!--<div>
-            <fieldset>
-                <legend>Osobné údaje</legend>
-                <p>
-                    <label>*Meno:
-                        <input type="text">
-                    </label>
-
-                    <label>*Priezvisko:
-                        <input type="text">
-                    </label>
-                </p>
-            </fieldset>
-        </div>-->
-
         <div class="narodenie">
-            <label>*Dátum narodenia:
-                <input type="date">
-            </label>
-
-            <label>*Vek:
-                <input type="text">
-            </label>
+            <p>
+                <label >*Dátum narodenia:
+                    <input type="date" id="datum" required>
+                    <br><small id="test"></small>
+                </label>
+            </p>
+            <p>
+                <label>*Vek:
+                    <input type="number" id="vek" placeholder="Váš vek" required>
+                </label>
+            </p>
         </div>
 
         <div class="pohlavie">
-            <label>*Pohalvie:
-                <input type="radio" name="pohlavie" value="M">muž
-                <input type="radio" name="pohlavie" value="Z">žena
-            </label>
-
-            <label>muz kolko vazi zena kolko meria
-                <input type="text">
-            </label>
+            <p>
+                <label>*Pohalvie:
+                    <br><input type="radio" name="pohlavie" value="M" required id="pohlavieM" class="pohMuz">muž
+                    <br><input type="radio" name="pohlavie" value="Z" required id="pohlavieZ">žena
+                </label>
+            </p>
+            <p>
+                <label for="doplnokM" id="labelDoplnokM">Koľko vážite (kg)
+                    <input type="number" id="doplnokM" placeholder="70" class="doplnokM">
+                </label>
+                <label for="doplnokZ" id="labelDoplnokZ">Koľko Meriate (cm)
+                    <input type="number" id="doplnokZ" placeholder="170" class="doplnokZ">
+                </label>
+            </p>
         </div>
+        <hr>
 
-
-        <div class="drop-downy">
-            <select id="procedury">
-                <option value="masazne">Masážne procedúry</option>
-                <option value="kozmeticke">Kozmetické procedúry</option>
-            </select>
-            <select id="masazne"></select>
-            <select id="chrbat"></select>
-
-        </div>
-
+        <h4>Kontaktné údaje</h4>
         <div class="cislo-mail">
-            <label>telefónne číslo:
-                <input type="text">
-            </label>
+            <p>
+                <label>telefónne číslo:
+                    <input type="text" placeholder="+421 000 000 000" pattern="[+]\d{3}\s\d{3}\s\d{3}\s\d{3}">
+                </label>
+            </p>
+            <p>
+                <label>e-mail:
+                    <input type="email" placeholder="name@example.com"
+                           pattern="[a-zA-Z0-9.-_]{3,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,4}">
+                </label></p>
+        </div>
+        <hr>
+        <h4>Typ služby</h4>
+        <div class="drop-downy">
+            <p>
+                <select id="procedury">
+                    <option value="masazne">Masážne procedúry</option>
+                    <option value="kozmeticke">Kozmetické procedúry</option>
+                </select></p>
+            <p>
+                <select id="masazne"></select></p>
+            <p>
+                <select id="chrbat"></select></p>
 
-            <label>e-mail:
-                <input type="email">
-            </label>
+        </div>
+        <hr>
+        <h4>Doplnkové služby</h4>
+        <div class="dalsie" id="dalsie">
+
+            <p>
+                <label> Saunový svet (10€)
+                    <input type="checkbox">
+                </label></p>
+            <p>
+                <label> Manikúra (10€)
+                    <input type="checkbox">
+                </label></p>
+            <p>
+                <label> Pedikúra (10€)
+                    <input type="checkbox">
+                </label></p>
+            <p>
+                <label> iné
+                    <input type="checkbox" id="ine">
+                    <label for="doplnkoveSluz"></label><textarea placeholder="Uveďte aké" id="doplnkoveSluz"></textarea>
+
+                </label>
+            </p>
+
         </div>
 
-
-
-        <div class="dalsie">
-            <h4>O aké ďalšie služby máte záujem?</h4>
-            <label> Saunový svet
-                <input type="checkbox">
-            </label>
-            <label> Zabezpečiť stravu
-                <input type="checkbox">
-            </label>
-            <label> iné
-                <input type="checkbox">
-                <textarea></textarea>
-            </label>
-
+        <hr>
+        <h4>Doplnkové informácie</h4>
+        <div class="choroby">
+            <p>
+                <label> Uveďte akými chorobami trpíte:
+                    <br><textarea placeholder="Uveďte"></textarea>
+                </label></p>
+            <p>
+                <label> Uveďte aké lieky užívate:
+                    <br>
+                    <textarea placeholder="Uveďte"></textarea>
+                </label></p>
         </div>
 
-        <div class="poziadavky">
-            <label>Špeciálne požiadavky
-                <textarea></textarea>
-            </label>
-        </div>
 
         <div class="odoslat">
-            <button type="submit">Odoslať</button>
+            <p>
+                <button type="submit" value="Submit">Odoslať</button>
+            </p>
         </div>
+        <div><small>* povinné polia</small></div>
 
 
     </form>

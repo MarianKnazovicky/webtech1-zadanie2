@@ -2,76 +2,114 @@ body {
     background: white;
 }
 
-section{
+section {
     background: whitesmoke;
+    border: 1px solid black;
+}
+
+input,select {
+    padding: 10px;
+    /*border: 2px solid red;*/
+}
+
+label {
+    width: 14em;
+    float: left;
+}
+
+h1, h3, h4 {
+    margin-left: 10%;
+}
+
+textarea {
+    width: 15vw;
+    height: 5vw;
+    resize: none;
 }
 
 @media only screen and (max-width: 768px) {
-    .main{
+    div {
         display: grid;
-        margin: auto auto;
-        grid-template-areas:
-            'meno'
-            'narodenie'
-            'pohlavie'
-            'drop-downy'
-            'cislo-mail'
-            'dalsie'
-            'poziadavky'
-            'odoslat';
+        grid: auto / auto;
+        margin-left: 10%;
     }
 }
 
 @media only screen and (min-width: 769px) {
-    .main{
+    div {
         display: grid;
-        margin: auto auto;
-        grid-template-areas:
-        'meno narodenie'
-        'pohlavie cislo-mail'
-        'drop-downy'
-        'dalsie poziadavky'
-        'odoslat';
+        grid: auto / auto auto;
+        margin-left: 10%;
+    }
+
+    div.drop-downy {
+        grid: auto / auto auto auto;
+        margin-left: 10%;
+        margin-right: 60%;
+    }
+
+    div.dalsie {
+        grid: auto / auto auto auto auto;
 
     }
 }
 
-.meno{
-    grid-area: meno;
-    margin: auto auto auto auto;
+.meno {
+
 }
 
-.narodenie{
-    grid-area: narodenie;
-    margin: auto auto auto auto;
+.narodenie {
+
 }
 
-.pohlavie{
-    grid-area: pohlavie;
-    margin: auto auto auto auto;
+.pohlavie {
+
 }
 
-.drop-downy{
-    grid-area: drop-downy;
-    margin: auto auto auto auto;
+.pohMuz {
+
 }
 
-.cislo-mail{
-    grid-area: cislo-mail;
-    margin: auto auto auto auto;
+.drop-downy {
+
 }
 
-.dalsie{
-    grid-area: dalsie;
-    margin: auto auto auto auto;
+.cislo-mail {
+
 }
 
-.poziadavky{
-    grid-area: poziadavky;
-    margin: auto auto auto auto;
+.dalsie {
+
 }
 
-.odoslat{
-    grid-area: odoslat;
-    margin: auto auto auto auto;
+.choroby {
+
 }
+
+.odoslat {
+
+}
+
+#doplnokM {
+    display: none;
+}
+
+#doplnokZ {
+    display: none
+}
+
+#labelDoplnokM {
+    display: none;
+}
+
+#labelDoplnokZ {
+    display: none
+}
+
+#doplnkoveSluz {
+    display: none;
+    width: 12vw;
+    max-height: 3vw;
+    margin-left: 1%;
+}
+
