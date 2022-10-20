@@ -90,8 +90,10 @@ doplnokMuz.onblur = function (){
         doplnokMuz.value = "";
         chybaPohlavie.innerHTML ="";
     } else if( cislo < 0){
-        chyba(doplnokMuz,chybaPohlavie,"nemôžte vážiť menej ako 0")
-    }else if(vysledok === true){
+        chyba(doplnokMuz,chybaPohlavie,"nemôžte vážiť menej ako 0kg")
+    } else if( cislo > 300){
+        chyba(doplnokMuz,chybaPohlavie,"nemôžte vážiť viac ako 300kg")
+    } else{
         ok(doplnokMuz,chybaPohlavie);
     }
 }
@@ -105,8 +107,10 @@ doplnokZena.onblur = function (){
         doplnokZena.value = "";
         chybaPohlavie.innerHTML ="";
     } else if( cislo < 0){
-        chyba(doplnokZena,chybaPohlavie,"nemôžte merať menej ako 0")
-    }else if(vysledok === true){
+        chyba(doplnokZena,chybaPohlavie,"nemôžte merať menej ako 0cm")
+    }else if(cislo > 300){
+        chyba(doplnokZena,chybaPohlavie,"nemôžte byť vyšší ako 300cm")
+    }else{
         ok(doplnokZena,chybaPohlavie);
     }
 }
