@@ -1,115 +1,174 @@
 body {
-    background: white;
+    background: deepskyblue;
+    background-image: url("../image/wellnes.jpg");
+    background-size: 1920px 1200px;
 }
 
 section {
     background: whitesmoke;
     border: 1px solid black;
+    margin-left: 2%;
+    margin-right: 2%;
+    opacity:0.95;
 }
 
-input,select {
-    padding: 10px;
-    /*border: 2px solid red;*/
+header{
+    margin-right: 2%;
+    margin-left: 2%;
+    color: white;
+    height: 50px;
 }
+
+footer{
+    height: 50px;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .riadok {
+        display: grid;
+        grid: auto / auto;
+        margin-left: 20%;
+    }
+
+    .drop-downy {
+        display: grid;
+        grid: auto / auto;
+        margin-left: 20%;
+    }
+
+    .dalsie {
+        display: grid;
+        grid: auto / auto;
+        margin-left: 20%;
+    }
+
+    .drop-downy label{
+        display: none;
+    }
+
+    input{
+        width: 50vw;
+        padding: 10px;
+    }
+
+    select{
+        width: 50vw;
+        padding: 10px;
+    }
+
+    textarea {
+        min-height: 3vw;
+        max-height: 5vw;
+        resize: none;
+        padding: 10px;
+        width: 50vw;
+    }
+}
+
+@media only screen and (min-width: 769px) {
+    .riadok{
+        display: grid;
+        grid: auto / 50% 50%;
+        margin-left: 10%;
+        margin-bottom: 0;
+    }
+
+    .drop-downy {
+        display: grid;
+        grid: auto / auto auto auto;
+        margin-left: 10%;
+        margin-right: 27%;
+    }
+
+    .drop-downy label{
+        display: none;
+    }
+
+    .dalsie {
+        display: grid;
+        grid: auto / 25% 25% 25% 25%;
+        margin-left: 10%;
+    }
+
+    input,select {
+        padding: 10px;
+        width: 20vw;
+    }
+
+    textarea {
+        min-height: 3vw;
+        max-height: 5vw;
+        resize: none;
+        padding: 10px;
+        width: 20vw;
+    }
+}
+
+
+
+
+.radiocheck{
+    width: 3em;
+}
+
+
 
 label {
-    width: 14em;
+    width: 15em;
+    height: 18px;
     float: left;
+    margin: 0;
+    padding: 0;
 }
 
 h1, h3, h4 {
     margin-left: 10%;
 }
 
-textarea {
-    width: 15vw;
-    height: 5vw;
-    resize: none;
+div {
+    margin-bottom: 15px;
 }
 
-@media only screen and (max-width: 768px) {
-    div {
-        display: grid;
-        grid: auto / auto;
-        margin-left: 10%;
-    }
+
+
+.chyba{
+    padding: 0;
+    margin: 0;
+    font-size: small;
+    height: 10px;
+    color:red;
 }
 
-@media only screen and (min-width: 769px) {
-    div {
-        display: grid;
-        grid: auto / auto auto;
-        margin-left: 10%;
-    }
-
-    div.drop-downy {
-        grid: auto / auto auto auto;
-        margin-left: 10%;
-        margin-right: 60%;
-    }
-
-    div.dalsie {
-        grid: auto / auto auto auto auto;
-
-    }
-}
-
-.meno {
-
-}
-
-.narodenie {
-
-}
-
-.pohlavie {
-
-}
-
-.pohMuz {
-
-}
-
-.drop-downy {
-
-}
-
-.cislo-mail {
-
-}
-
-.dalsie {
-
-}
-
-.choroby {
-
-}
-
-.odoslat {
-
+#doplnkoveSluz {
+    display: none;
+    height: 50px;
+    width: 140px;
 }
 
 #doplnokM {
     display: none;
 }
 
-#doplnokZ {
-    display: none
-}
-
 #labelDoplnokM {
     display: none;
 }
 
-#labelDoplnokZ {
-    display: none
+#doplnokZ {
+    display: none;
 }
 
-#doplnkoveSluz {
+#labelDoplnokZ {
     display: none;
-    width: 12vw;
-    max-height: 3vw;
-    margin-left: 1%;
+}
+
+#vrstvaNad{
+    display: none;
+}
+
+.close{
+    width: 20px;
+    height: 20px;
+    background-color: coral;
 }
 
