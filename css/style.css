@@ -1,29 +1,3 @@
-body {
-    background: deepskyblue;
-    background-image: url("../image/wellnes.jpg");
-    background-size: 1920px 1200px;
-}
-
-section {
-    background: whitesmoke;
-    border: 1px solid black;
-    margin-left: 2%;
-    margin-right: 2%;
-    opacity:0.95;
-}
-
-header{
-    margin-right: 2%;
-    margin-left: 2%;
-    color: white;
-    height: 50px;
-}
-
-footer{
-    height: 50px;
-}
-
-
 @media only screen and (max-width: 768px) {
     .riadok {
         display: grid;
@@ -104,6 +78,34 @@ footer{
         width: 20vw;
     }
 }
+
+
+body {
+    background: deepskyblue;
+    background-image: url("../image/wellnes.jpg");
+    background-size: 1920px 1200px;
+}
+
+section {
+    background: whitesmoke;
+    border: 1px solid black;
+    margin-left: 2%;
+    margin-right: 2%;
+    opacity:0.95;
+}
+
+header{
+    margin-right: 2%;
+    margin-left: 2%;
+    color: white;
+    height: 50px;
+}
+
+footer{
+    height: 50px;
+}
+
+
 
 
 
