@@ -25,17 +25,15 @@
         <input type="hidden" name="sender" value="majoo">
         <input type="hidden" name="to" value="xknazovicky@stuba.sk">
         <input type="hidden" name="subject" value="test">
-        <input type="hidden" name="redirectOk" value="https://www.google.sk/?hl=sk">
+        <input type="hidden" name="redirectOk" value="https://webte1.fei.stuba.sk/~xknazovicky/hidden2/">
         <input type="hidden" name="redirectFalse" value="https://www.google.sk/?hl=sk">
-
-<!--5776c216dec9deff124f3842d85d951c-->
 
         <div class="riadok">
             <div>
                 <label for="k-meno">*Meno:</label>
                 <br>
                 <input type="text" id="k-meno" placeholder="Krstné meno" maxlength="15"
-                       onkeyup="maxChcek(meno,maxMeno,15)">
+                       onkeyup="maxCheck(meno,maxMeno,15)" name="Meno">
                 <br>
                 <p class="maxChar" id="max-meno"></p>
                 <p class="chyba" id="chyba-meno"></p>
@@ -45,7 +43,7 @@
                 <label for="p-meno">*Priezvisko:</label>
                 <br>
                 <input type="text" id="p-meno" placeholder="Priezvisko" maxlength="20"
-                       onkeyup="maxChcek(priezvisko,maxPriezvisko,20)">
+                       onkeyup="maxCheck(priezvisko,maxPriezvisko,20)" name="Priezvisko">
                 <br>
                 <p class="maxChar" id="max-priezvisko"></p>
                 <p class="chyba" id="chyba-priezvisko"></p>
@@ -56,16 +54,17 @@
             <div>
                 <label for="datum">*Dátum narodenia:</label>
                 <br>
-                <input type="date" id="datum">
+                <input type="date" id="datum" name="Dátum narodenia">
                 <br>
+                <p class="maxChar"></p>
                 <p class="chyba" id="chyba-datum"></p>
             </div>
 
             <div>
                 <label for="vek">*Vek:</label>
                 <br>
-                <input type="number" id="vek" placeholder="Váš vek"
-                       oninput="this.value=this.value.slice(0,3)" onkeyup="maxChcek(vek,maxVek,3)">
+                <input type="number" id="vek" placeholder="Váš vek" name="Vek"
+                       oninput="this.value=this.value.slice(0,3)" onkeyup="maxCheck(vek,maxVek,3)">
                 <br>
                 <p class="maxChar" id="max-vek"></p>
                 <p class="chyba" id="chyba-vek"></p>
@@ -75,25 +74,28 @@
         <div class="riadok">
             <div>
                 <label>*Pohalvie:</label>
-                <br><label for="pohlavieM" class="radiocheck">Muž</label>
-                <input type="radio" name="pohlavie" id="pohlavieM" class="radiocheck">
+                <br><label for="pohlavieM" class="radiocheck" >Muž</label>
+                <input type="radio" name="Muž" id="pohlavieM" class="radiocheck">
                 <br><label for="pohlavieZ" class="radiocheck">Žena</label>
-                <input type="radio" name="pohlavie" id="pohlavieZ" class="radiocheck">
+                <input type="radio" name="Žena" id="pohlavieZ" class="radiocheck">
                 <br>
                 <p class="chyba" id="chyba-pohlavie"></p>
+                <p id="zarovnaj"></p>
             </div>
             <div>
                 <label for="doplnokM" id="labelDoplnokM">Koľko vážite? (kg)</label>
                 <br id="zlomM"><input type="number" id="doplnokM" placeholder="70"
                                       oninput="this.value=this.value.slice(0,3)"
-                                      onkeyup="maxChcek(doplnokMuz,maxDoplnPohlavie,3)">
+                                      onkeyup="maxCheck(doplnokMuz,maxDoplnPohlavie,3)"
+                                      name="Váha">
 
                 <label for="doplnokZ" id="labelDoplnokZ">Koľko meriate? (cm)</label>
                 <br id="zlomZ"><input type="number" id="doplnokZ" placeholder="170"
                                       oninput="this.value=this.value.slice(0,3)"
-                                      onkeyup="maxChcek(doplnokZena,maxDoplnPohlavie,3)">
-                <br>
+                                      onkeyup="maxCheck(doplnokZena,maxDoplnPohlavie,3)"
+                                      name="Výška">
                 <p class="maxChar" id="max-doplnok-pohlavie"></p>
+                <p class="chyba" id="chybaDoplPohlavie"></p>
             </div>
         </div>
         <hr>
@@ -104,39 +106,39 @@
                 <label for="telC">telefónne číslo: </label>
                 <br>
                 <input id="telC" type="text" placeholder="+000 000 000 000" maxlength="16"
-                       onkeyup="maxChcek(telC,maxTelC,16)">
+                       onkeyup="maxCheck(telC,maxTelC,16)" name="Telefónne číslo">
                 <br>
                 <p class="maxChar" id="max-telefon"></p>
                 <p class="chyba" id="chyba-telefon"></p>
             </div>
 
             <div>
-                <label for="email">e-mail:</label>
+                <label for="email">*e-mail:</label>
                 <br><input id="email" type="email" placeholder="name@example.com" maxlength="30"
-                           onkeyup="maxChcek(email,maxEmail,30)">
+                           onkeyup="maxCheck(email,maxEmail,30)" name="email">
                 <br>
                 <p class="maxChar" id="max-email"></p>
                 <p class="chyba" id="chyba-email"></p>
             </div>
         </div>
         <hr>
-        <h4>Typy procedúr</h4>
+        <h4>Typ procedúry</h4>
         <div class="drop-downy">
             <div>
                 <label for="procedury"></label>
-                <select id="procedury">
-                    <option value="masazne">Masážne</option>
-                    <option value="kozmeticke">Kozmetické</option>
+                <select id="procedury" name="Typ procedúry">
+                    <option value="masazne">Masážna</option>
+                    <option value="kozmeticke">Kozmetická</option>
                 </select>
             </div>
             <div>
                 <label for="stred"></label>
-                <select id="stred"></select>
+                <select id="stred" name="Procedúra"></select>
             </div>
 
             <div>
                 <label for="koniec"></label>
-                <select id="koniec"></select>
+                <select id="koniec" name="Procedúra"></select>
             </div>
 
         </div>
@@ -146,17 +148,17 @@
 
             <div>
                 <label for="sauna" class="radiocheck"> Sauna (20€) </label>
-                <input id="sauna" type="checkbox" class="radiocheck">
+                <input id="sauna" type="checkbox" class="radiocheck" name="Sauna (20€)">
 
             </div>
             <div>
                 <label for="manikura" class="radiocheck"> Manikúra (15€)</label>
-                <input id="manikura" type="checkbox" class="radiocheck">
+                <input id="manikura" type="checkbox" class="radiocheck" name="Manikúra (15€)">
 
             </div>
             <div>
                 <label for="pedikura" class="radiocheck"> Pedikúra (17€)</label>
-                <input id="pedikura" type="checkbox" class="radiocheck">
+                <input id="pedikura" type="checkbox" class="radiocheck" name="Pedikúra (17€)">
 
 
             </div>
@@ -164,8 +166,10 @@
                 <label for="ine" class="radiocheck">iné</label>
                 <input type="checkbox" id="ine" class="radiocheck">
                 <label for="doplnkoveSluz" style="display: none"></label>
-                <textarea placeholder="Uveďte aké" id="doplnkoveSluz"></textarea>
-
+                <textarea placeholder="Uveďte aké" id="doplnkoveSluz" name="Doplnok"
+                          maxlength="50"
+                          onkeyup="maxCheck(napisaneDoplnkoveSluzby,maxIneDoplnSluz,50)"></textarea>
+                <p class="maxChar" id="max-ineDoplnky"></p>
             </div>
 
         </div>
@@ -177,13 +181,12 @@
                 <label for="choroby"> Uveďte akými chorobami trpíte:</label>
                 <br>
                 <textarea id="choroby" placeholder="Uveďte" maxlength="100"
-                          onkeyup="maxChcek(choroby,maxChoroby,100)"></textarea>
-                <br>
+                          onkeyup="maxCheck(choroby,maxChoroby,100)" name="Vaše choroby"></textarea>
+
                 <p class="maxChar" id="max-choroby"></p>
             </div>
             <div>
                 <button type="button" id="odokry-meno">Meno</button>
-                <br>
                 <output id="moje-meno">Marián Kňazovický</output>
             </div>
         </div>
@@ -191,7 +194,7 @@
 
         <div class="riadok">
             <div>
-                <button type="button" id="prehlad">Prehľad</button>
+                <button type="button" id="prehlad" >Prehľad</button>
             </div>
         </div>
 
@@ -207,6 +210,5 @@
 </footer>
 
 <script src="js/script.js"></script>
-<script src="https://smtpjs.com/v3/smtp.js"></script>
 </body>
 </html>

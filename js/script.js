@@ -7,7 +7,7 @@ var maxDoplnPohlavie = document.getElementById("max-doplnok-pohlavie")
 var maxTelC = document.getElementById("max-telefon")
 var maxEmail = document.getElementById("max-email")
 var maxChoroby = document.getElementById("max-choroby")
-
+var maxIneDoplnSluz = document.getElementById("max-ineDoplnky")
 
 /*COMBOBOXY*/
 var vypisProcedury = document.getElementById('procedury');
@@ -73,6 +73,7 @@ vypisStred.onchange = function() {
 
 var pohlavieMuz = document.getElementById("pohlavieM")
 var chybaPohlavie = document.getElementById("chyba-pohlavie");
+
 pohlavieMuz.onchange = function(){
     document.getElementById("zlomZ").style.display = 'none';
     document.getElementById("doplnokZ").style.display = 'none';
@@ -94,6 +95,8 @@ pohlavieZena.onchange = function(){
     chybaPohlavie.innerHTML = ""
 }
 
+var chybaDoplnPohlavie = document.getElementById("chybaDoplPohlavie");
+
 var doplnokMuz = document.getElementById("doplnokM")
 doplnokMuz.onblur = function (){
     let cislo = doplnokMuz.value;
@@ -103,11 +106,11 @@ doplnokMuz.onblur = function (){
         doplnokMuz.value = "";
         chybaPohlavie.innerHTML ="";
     } else if( cislo < 0){
-        chyba(doplnokMuz,chybaPohlavie,"nemôžte vážiť menej ako 0kg")
+        chyba(doplnokMuz,chybaDoplnPohlavie,"nemôžte vážiť menej ako 0kg")
     } else if( cislo > 300){
-        chyba(doplnokMuz,chybaPohlavie,"nemôžte vážiť viac ako 300kg")
+        chyba(doplnokMuz,chybaDoplnPohlavie,"nemôžte vážiť viac ako 300kg")
     } else{
-        ok(doplnokMuz,chybaPohlavie);
+        ok(doplnokMuz,chybaDoplnPohlavie);
     }
     maxDoplnPohlavie.innerHTML = "";
 }
@@ -121,25 +124,40 @@ doplnokZena.onblur = function (){
         doplnokZena.value = "";
         chybaPohlavie.innerHTML ="";
     } else if( cislo < 0){
-        chyba(doplnokZena,chybaPohlavie,"nemôžte merať menej ako 0cm")
+        chyba(doplnokZena,chybaDoplnPohlavie,"nemôžte merať menej ako 0cm")
     }else if(cislo > 300){
-        chyba(doplnokZena,chybaPohlavie,"nemôžte byť vyšší ako 300cm")
+        chyba(doplnokZena,chybaDoplnPohlavie,"nemôžte byť vyšší ako 300cm")
     }else{
-        ok(doplnokZena,chybaPohlavie);
+        ok(doplnokZena,chybaDoplnPohlavie);
     }
-    maxDoplnPohlavie.innerHTML = "";
+    //maxDoplnPohlavie.innerHTML = "";
 }
 
 /*DOPLNKOVE SLUZBY INE*/
 var ineDoplnkoveSluzby = document.getElementById("ine")
 var napisaneDoplnkoveSluzby = document.getElementById('doplnkoveSluz');
+
 ineDoplnkoveSluzby.onchange = function(){
 
     if (ineDoplnkoveSluzby.checked){
         napisaneDoplnkoveSluzby.style.display = 'block';
     }
     else{
+        napisaneDoplnkoveSluzby.value = "";
         napisaneDoplnkoveSluzby.style.display = 'none';
+    }
+    maxIneDoplnSluz.innerHTML="";
+    maxIneDoplnSluz.style.color = "black"
+    napisaneDoplnkoveSluzby.style.border = "2px solid grey";
+    napisaneDoplnkoveSluzby.style.background = 'white'
+}
+
+napisaneDoplnkoveSluzby.onblur = function(){
+    if( napisaneDoplnkoveSluzby.value === null || napisaneDoplnkoveSluzby.value === ""){
+        maxIneDoplnSluz.style.color = "red"
+        chyba(napisaneDoplnkoveSluzby,maxIneDoplnSluz,"toto pole je povinné");
+    }else {
+        ok(napisaneDoplnkoveSluzby,maxIneDoplnSluz);
     }
 }
 
@@ -157,7 +175,7 @@ telC.onblur = function (){
         telC.value = "";
         chybaTelC.innerHTML ="";
     } else if(vysledok === false){
-        chyba(telC,chybaTelC,"nesprávny formát")
+        chyba(telC,chybaTelC,"nesprávny formát telefónneho čísla")
     }else if(vysledok === true){
         ok(telC,chybaTelC)
     }
@@ -172,12 +190,9 @@ email.onblur = function (){
     let pattern = /^[a-zA-Z0-9.-_]{3,}[@]{1,1}[a-zA-Z.-]{2,}[.]{1,1}[a-zA-Z]{2,4}$/;
     let vysledok = pattern.test(cislo);
     if( cislo === null || cislo === ""){
-        email.style.border = '1px solid black';
-        email.style.background = 'white'
-        email.value = "";
-        chybaEmail.innerHTML ="";
+        chyba(email,chybaEmail,"email je povinný")
     } else if(vysledok === false){
-        chyba(email,chybaEmail,"nesprávny formát");
+        chyba(email,chybaEmail,"nesprávny formát emailu");
     }else if(vysledok === true){
         ok(email,chybaEmail);
     }
@@ -209,7 +224,7 @@ datumNarodenia.onblur = function (){
         ok(datumNarodenia,chybaDatum);
     } else if(datum == "Invalid Date"){
         vypocitanyVek = NaN;
-        chyba(datumNarodenia,chybaDatum,"toto pole je povinné")
+        chyba(datumNarodenia,chybaDatum,"dátum je povinný")
     }else if(vek.value == null || vek.value == ""){
         vek.placeholder = vypocitanyVek;
         ok(datumNarodenia,chybaDatum);
@@ -222,9 +237,11 @@ datumNarodenia.onblur = function (){
 vek.onblur = function () {
     let cislo = vek.value;
     if (cislo == "" || cislo == null) {
-        chyba(vek,chybaVek,"toto pole je povinné");
+        chyba(vek,chybaVek,"vek je povinný");
     } else if(cislo < 0){
         chyba(vek,chybaVek,"nemôžte mať záporne rokov");
+    }else if(cislo > 122){
+        chyba(vek,chybaVek,"nemôžte mať viac ako 122 rokov");
     }else if (!isNaN(vypocitanyVek) && (vypocitanyVek != cislo && vypocitanyVek != null)) {
         chyba(vek,chybaVek,"vek sa nezhoduje s dátumom narodenia")
     } else {
@@ -235,7 +252,6 @@ vek.onblur = function () {
 /*TEXTAREA*/
 
 var choroby = document.getElementById("choroby")
-
 choroby.onblur=function (){
     maxChoroby.innerHTML = "";
 }
@@ -249,7 +265,7 @@ var chybaPriezvisko = document.getElementById("chyba-priezvisko")
 meno.onblur = function (){
     let cislo = meno.value;
     if( cislo === null || cislo === ""){
-        chyba(meno,chybaMeno,"toto pole je povinné");
+        chyba(meno,chybaMeno,"meno je povinné");
     }else {
         ok(meno,chybaMeno);
     }
@@ -259,7 +275,7 @@ meno.onblur = function (){
 priezvisko.onblur = function (){
     let cislo = priezvisko.value;
     if( cislo === null || cislo === ""){
-        chyba(priezvisko,chybaPriezvisko,"toto pole je povinné")
+        chyba(priezvisko,chybaPriezvisko,"priezvisko je povinné")
     }else {
         ok(priezvisko,chybaPriezvisko);
     }
@@ -282,9 +298,10 @@ function ok(kto,kam){
     kam.innerHTML = "";
 }
 
-function maxChcek(kto ,kam , kolko){
+function maxCheck(kto ,kam , kolko){
     let tmp = kto.value;
     let cislo = tmp.length;
+    kam.style.color = "black"
     kam.innerHTML = cislo + "/" + kolko;
 }
 
@@ -294,7 +311,7 @@ function validujPredOdoslanim() {
     let flag = true;
     //meno
     if((meno.value === null || meno.value === "")){
-        chyba(meno,chybaMeno,"toto pole je povinné");
+        chyba(meno,chybaMeno,"meno je povinné");
         flag = false;
     }
     if (meno.style.display === '2px solid red' ){
@@ -302,7 +319,7 @@ function validujPredOdoslanim() {
     }
     //priezvisko
     if((priezvisko.value === null || priezvisko.value === "")){
-        chyba(priezvisko,chybaPriezvisko,"toto pole je povinné")
+        chyba(priezvisko,chybaPriezvisko,"priezvisko je povinné")
         flag = false;
     }
     if (priezvisko.style.display === '2px solid red' ){
@@ -310,7 +327,7 @@ function validujPredOdoslanim() {
     }
     //datum narodenia
     if((datumNarodenia.value === null || datumNarodenia.value === "")){
-        chyba(datumNarodenia,chybaDatum,"toto pole je povinné");
+        chyba(datumNarodenia,chybaDatum,"dátum je povinný");
         flag = false;
     }
     if (datumNarodenia.style.display === '2px solid red' ){
@@ -318,7 +335,7 @@ function validujPredOdoslanim() {
     }
     //vek
     if((vek.value === null || vek.value === "")){
-        chyba(vek,chybaVek,"toto pole je povinné")
+        chyba(vek,chybaVek,"vek je povinný")
         flag = false;
     }
     if (vek.style.display === '2px solid red' ){
@@ -326,7 +343,7 @@ function validujPredOdoslanim() {
     }
     //pohlavie
     if(!pohlavieMuz.checked && !pohlavieZena.checked){
-        chybaPohlavie.innerHTML = "toto pole je povinné"
+        chybaPohlavie.innerHTML = "pohlavie je povinné"
         flag = false;
     }
     /*if(pohlavieMuz.checked && doplnokMuz.style.display === '2px solid red') {
@@ -340,8 +357,20 @@ function validujPredOdoslanim() {
         flag = false;
     }
     //email
+    if((email.value === null || email.value === "")){
+        chyba(email,chybaEmail,"email je povinný")
+        flag = false;
+    }
     if (email.style.display === '2px solid red' ){
         flag = false;
+    }
+    // ine doplnky
+    if(ineDoplnkoveSluzby.checked){
+        if((napisaneDoplnkoveSluzby.value === null || napisaneDoplnkoveSluzby.value === "")){
+            maxIneDoplnSluz.style.color = "red";
+            chyba(napisaneDoplnkoveSluzby,maxIneDoplnSluz,"musíte niečo napísať")
+            flag = false;
+        }
     }
     return flag;
 }
@@ -360,24 +389,10 @@ buttonMeno.onclick = function(){
 var prehlad = document.getElementById("prehlad");
 prehlad.onclick = function (){
     let tmp = validujPredOdoslanim();
-    /*if(tmp){
+    if(tmp){
         modal() // otvor prehlad
-    }*/
-    modal()
+    }
 }
-
-//peeling - tvare chgrbta tela ruk
-//masaz tvare - 5 10 15 minut -- kozmeticka
-//sportova masaz - ruk noh chrbta
-
-//masaz cim
-//nechty - ruky nohy
-//choroby, ktore trpi - tlak, krcove zili, operacie, ine.
-//trpite, lieky, operacie, bolesti
-
-//otazka muz/zena - porody/bolestiva pravidelna menstruacia muz-fajciar/cukrovnka
-
-/*CVICENIE 5*/
 
 /*zistenie ceny*/
 
@@ -523,4 +538,14 @@ function modal(){
     })
 }
 
+//peeling - tvare chgrbta tela ruk
+//masaz tvare - 5 10 15 minut -- kozmeticka
+//sportova masaz - ruk noh chrbta
+
+//masaz cim
+//nechty - ruky nohy
+//choroby, ktore trpi - tlak, krcove zili, operacie, ine.
+//trpite, lieky, operacie, bolesti
+
+//otazka muz/zena - porody/bolestiva pravidelna menstruacia muz-fajciar/cukrovnka
 

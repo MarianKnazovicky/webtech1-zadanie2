@@ -33,6 +33,10 @@
         padding: 10px;
         width: 50vw;
     }
+
+    #zarovnaj{
+        display: none;
+    }
 }
 
 @media only screen and (min-width: 769px) {
@@ -71,6 +75,10 @@
         resize: none;
         padding: 10px;
         width: 20vw;
+    }
+
+    #zarovnaj{
+        display: block;
     }
 }
 
@@ -136,6 +144,7 @@ div {
     height: 10px;
 }
 
+
 #doplnkoveSluz {
     display: none;
     height: 50px;
@@ -170,6 +179,15 @@ div {
     color: whitesmoke;
 }
 
+#odokry-meno{
+    padding: 5px;
+}
+
+#moje-meno{
+    padding-top: 10px;
+}
+
+
 .modal {
     display: none;
     position: fixed;
@@ -186,7 +204,7 @@ div {
     width: 80%;
     height: auto;
     padding: 30px;
-    margin-top: 10%;
+    margin-top: 7%;
     margin-left: auto ;
     margin-right: auto;
     font-size: large;
