@@ -207,6 +207,7 @@ div {
     height: 100%;
     z-index: 2;
     background: rgba(100,100,100,0.7);
+    overflow: auto;
 }
 
 .modal-content {
@@ -215,11 +216,8 @@ div {
     width: 80%;
     height: auto;
     padding: 30px;
-    margin-top: 7%;
-    margin-left: auto ;
-    margin-right: auto;
+    margin: 7% auto 5%;
     font-size: large;
-    overflow: auto;
 }
 
 .close{
