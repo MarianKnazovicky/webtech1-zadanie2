@@ -75,25 +75,25 @@
             <div>
                 <label>*Pohalvie:</label>
                 <br><label for="pohlavieM" class="radiocheck" >Muž</label>
-                <input type="radio" name="Muž" id="pohlavieM" class="radiocheck">
+                <input type="radio" name="Pohlavie" value="Muž" id="pohlavieM" class="radiocheck">
                 <br><label for="pohlavieZ" class="radiocheck">Žena</label>
-                <input type="radio" name="Žena" id="pohlavieZ" class="radiocheck">
+                <input type="radio" name="Pohlavie" value="Žena" id="pohlavieZ" class="radiocheck">
                 <br>
                 <p class="chyba" id="chyba-pohlavie"></p>
                 <p id="zarovnaj"></p>
             </div>
-            <div>
+            <div id="doplnokDiv">
                 <label for="doplnokM" id="labelDoplnokM">Koľko vážite? (kg)</label>
                 <br id="zlomM"><input type="number" id="doplnokM" placeholder="70"
                                       oninput="this.value=this.value.slice(0,3)"
                                       onkeyup="maxCheck(doplnokMuz,maxDoplnPohlavie,3)"
-                                      name="Váha">
+                                      name="Doplnok">
 
                 <label for="doplnokZ" id="labelDoplnokZ">Koľko meriate? (cm)</label>
                 <br id="zlomZ"><input type="number" id="doplnokZ" placeholder="170"
                                       oninput="this.value=this.value.slice(0,3)"
                                       onkeyup="maxCheck(doplnokZena,maxDoplnPohlavie,3)"
-                                      name="Výška">
+                                      name="Doplnok">
                 <p class="maxChar" id="max-doplnok-pohlavie"></p>
                 <p class="chyba" id="chybaDoplPohlavie"></p>
             </div>
@@ -138,7 +138,7 @@
 
             <div>
                 <label for="koniec"></label>
-                <select id="koniec" name="Procedúra"></select>
+                <select id="koniec" name="Procedúra-doplnok"></select>
             </div>
 
         </div>
@@ -147,23 +147,23 @@
         <div class="dalsie" id="dalsie">
 
             <div>
-                <label for="sauna" class="radiocheck"> Sauna (20€) </label>
-                <input id="sauna" type="checkbox" class="radiocheck" name="Sauna (20€)">
+                <label for="sauna" class="radiocheck"> Sauna (20€) </label><br class="zlom">
+                <input id="sauna" type="checkbox" class="radiocheck" name="Sauna" value="20€">
 
             </div>
             <div>
-                <label for="manikura" class="radiocheck"> Manikúra (15€)</label>
-                <input id="manikura" type="checkbox" class="radiocheck" name="Manikúra (15€)">
+                <label for="manikura" class="radiocheck"> Manikúra (15€)</label><br class="zlom">
+                <input id="manikura" type="checkbox" class="radiocheck" name="Manikúra" value="15€">
 
             </div>
             <div>
-                <label for="pedikura" class="radiocheck"> Pedikúra (17€)</label>
-                <input id="pedikura" type="checkbox" class="radiocheck" name="Pedikúra (17€)">
+                <label for="pedikura" class="radiocheck"> Pedikúra (17€)</label><br class="zlom">
+                <input id="pedikura" type="checkbox" class="radiocheck" name="Pedikúra" value="17€">
 
 
             </div>
             <div>
-                <label for="ine" class="radiocheck">iné</label>
+                <label for="ine" class="radiocheck" >iné</label><br class="zlom">
                 <input type="checkbox" id="ine" class="radiocheck">
                 <label for="doplnkoveSluz" style="display: none"></label>
                 <textarea placeholder="Uveďte aké" id="doplnkoveSluz" name="Doplnok"
@@ -198,7 +198,7 @@
             </div>
         </div>
 
-        <div class="riadok"><small>* povinné polia</small></div>
+        <div class="riadok"><small>* povinné polia<br>vekový limit pre wellnes je 8 rokov</small></div>
 
         <div class="modal" id="vrstvaNad"></div>
 

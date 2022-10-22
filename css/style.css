@@ -37,6 +37,8 @@
     #zarovnaj{
         display: none;
     }
+
+
 }
 
 @media only screen and (min-width: 769px) {
@@ -80,6 +82,10 @@
     #zarovnaj{
         display: block;
     }
+
+    .zlom{
+        display: none;
+    }
 }
 
 
@@ -110,7 +116,7 @@ footer{
 }
 
 .radiocheck{
-    width: 3em;
+    width: auto;
 }
 
 label {
@@ -179,6 +185,10 @@ div {
     color: whitesmoke;
 }
 
+#doplnokDiv{
+    display: none;
+}
+
 #odokry-meno{
     padding: 5px;
 }
@@ -201,6 +211,7 @@ div {
 
 .modal-content {
     background-color: lightgrey;
+    text-align: center;
     width: 80%;
     height: auto;
     padding: 30px;
@@ -208,6 +219,7 @@ div {
     margin-left: auto ;
     margin-right: auto;
     font-size: large;
+    overflow: auto;
 }
 
 .close{
@@ -218,7 +230,6 @@ div {
 }
 
 .odoslat{
-    margin-left: 46%;
     margin-right: auto;
     font-size: 2em;
     border: 1px solid black;

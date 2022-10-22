@@ -75,6 +75,7 @@ var pohlavieMuz = document.getElementById("pohlavieM")
 var chybaPohlavie = document.getElementById("chyba-pohlavie");
 
 pohlavieMuz.onchange = function(){
+    document.getElementById("doplnokDiv").style.display = 'block';
     document.getElementById("zlomZ").style.display = 'none';
     document.getElementById("doplnokZ").style.display = 'none';
     document.getElementById("labelDoplnokZ").style.display = 'none';
@@ -86,6 +87,7 @@ pohlavieMuz.onchange = function(){
 
 var pohlavieZena = document.getElementById("pohlavieZ")
 pohlavieZena.onchange = function(){
+    document.getElementById("doplnokDiv").style.display = 'block';
     document.getElementById("zlomM").style.display = 'none';
     document.getElementById("doplnokM").style.display = 'none';
     document.getElementById("labelDoplnokM").style.display = 'none';
@@ -215,11 +217,14 @@ datumNarodenia.onblur = function (){
     vypocitanyVek = Math.floor(diff/(31556952000));
     if(diff < 0){
         vypocitanyVek = NaN;
-        chyba(datumNarodenia,chybaDatum,"nemôžeš sa narodiť neskôr ako dnes");
-    } else if( diff/(31556952000) > 122 ) {
+        chyba(datumNarodenia,chybaDatum,"nemôžežte sa narodiť neskôr ako dnes");
+    } else if( vypocitanyVek > 122 ) {
         vypocitanyVek = NaN;
         chyba(datumNarodenia,chybaDatum,"narodil si sa pred rokom 1900");
-    } else if((vek.value != null || vek.value !== "") && vek.value == vypocitanyVek){
+    } else if( vypocitanyVek < 8 ) {
+        vypocitanyVek = NaN;
+        chyba(datumNarodenia,chybaDatum,"vekový limit pre wellness je 8 rokov");
+    }else if((vek.value != null || vek.value !== "") && vek.value == vypocitanyVek){
         vek.placeholder = vypocitanyVek;
         ok(datumNarodenia,chybaDatum);
     } else if(datum == "Invalid Date"){
@@ -240,6 +245,8 @@ vek.onblur = function () {
         chyba(vek,chybaVek,"vek je povinný");
     } else if(cislo < 0){
         chyba(vek,chybaVek,"nemôžte mať záporne rokov");
+    } else if(cislo < 8){
+        chyba(vek,chybaVek,"vekový limit pre wellnes je 8 rokov");
     }else if(cislo > 122){
         chyba(vek,chybaVek,"nemôžte mať viac ako 122 rokov");
     }else if (!isNaN(vypocitanyVek) && (vypocitanyVek != cislo && vypocitanyVek != null)) {
@@ -346,12 +353,6 @@ function validujPredOdoslanim() {
         chybaPohlavie.innerHTML = "pohlavie je povinné"
         flag = false;
     }
-    /*if(pohlavieMuz.checked && doplnokMuz.style.display === '2px solid red') {
-        flag = false;
-    }
-    if(pohlavieMuz.checked && doplnokMuz.style.display === '2px solid red'){
-        flag = false;
-    }*/
     //telefon
     if (telC.style.display === '2px solid red' ){
         flag = false;
@@ -421,7 +422,7 @@ function modal(){
     let modalNadpis = document.createElement("p");
     modalNadpis.style.fontSize = "2em";
     modalNadpis.style.fontWeight = "bold";
-    modalNadpis.innerHTML = "Zhrnutie objednávky:";
+    modalNadpis.innerHTML = "Zhrnutie objednávky";
     modalContent.appendChild(modalNadpis);
 
     let modalMeno = document.createElement("p");
