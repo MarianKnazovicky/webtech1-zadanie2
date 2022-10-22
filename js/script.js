@@ -1,3 +1,14 @@
+/*MAX POCET ZNAKOV*/
+
+var maxMeno = document.getElementById("max-meno")
+var maxPriezvisko = document.getElementById("max-priezvisko")
+var maxVek = document.getElementById("max-vek")
+var maxDoplnPohlavie = document.getElementById("max-doplnok-pohlavie")
+var maxTelC = document.getElementById("max-telefon")
+var maxEmail = document.getElementById("max-email")
+var maxChoroby = document.getElementById("max-choroby")
+
+
 /*COMBOBOXY*/
 var vypisProcedury = document.getElementById('procedury');
 var vypisStred = document.getElementById("stred");
@@ -9,15 +20,15 @@ zoznamStred["kozmeticke"]=["Pleťová maska", "Bahenný kúpeľ","Peeling"];
 zoznamStred["masazne"].forEach(function(item){ vypisStred.options[vypisStred.options.length]= new Option(item); });
 
 var zoznamKoniecM = new Array();
-zoznamKoniecM["chrbat"]=["15 minút", "20 minút","25 minút"];
-zoznamKoniecM["telo"]=["30 minút", "45 minút","60 minút"];
-zoznamKoniecM["sport"]=["chrbta","rúk","nôh"];
+zoznamKoniecM["chrbat"]=["15 minút (20€)", "20 minút (25€)","25 minút (27€)"];
+zoznamKoniecM["telo"]=["30 minút (35€)", "45 minút (50€)","60 minút (60€)"];
+zoznamKoniecM["sport"]=["chrbta (25€)","rúk (15€)","nôh (20€)"];
 zoznamKoniecM["chrbat"].forEach(function(item){ vypisKoniec.options[vypisKoniec.options.length]= new Option(item); });
 
 var zoznamKoniecK = new Array();
-zoznamKoniecK["maska"]=["Omladzujúca maska", "Zjemnenie pleti","Proti vráskam"];
-zoznamKoniecK["kupel"]=["20 minút", "30 minút","40 minút"];
-zoznamKoniecK["peeling"]=["tváre","chrbta","rúk",];
+zoznamKoniecK["maska"]=["Čistiaca (8€)", "Protizápalová (10€)","Hydratačná (6€)"];
+zoznamKoniecK["kupel"]=["20 minút (20€)", "30 minút (25€)","40 minút (30€)"];
+zoznamKoniecK["peeling"]=["tváre (10€)","chrbta (12€)","rúk (8€)"];
 
 vypisProcedury.onchange = function() {
     let prvy = vypisProcedury.value;
@@ -69,6 +80,7 @@ pohlavieMuz.onchange = function(){
     document.getElementById("zlomM").style.display = 'block';
     document.getElementById("doplnokM").style.display = 'block';
     document.getElementById("labelDoplnokM").style.display = 'block';
+    chybaPohlavie.innerHTML = ""
 }
 
 var pohlavieZena = document.getElementById("pohlavieZ")
@@ -79,6 +91,7 @@ pohlavieZena.onchange = function(){
     document.getElementById("zlomZ").style.display = 'block';
     document.getElementById("doplnokZ").style.display = 'block';
     document.getElementById("labelDoplnokZ").style.display = 'block';
+    chybaPohlavie.innerHTML = ""
 }
 
 var doplnokMuz = document.getElementById("doplnokM")
@@ -96,6 +109,7 @@ doplnokMuz.onblur = function (){
     } else{
         ok(doplnokMuz,chybaPohlavie);
     }
+    maxDoplnPohlavie.innerHTML = "";
 }
 
 var doplnokZena = document.getElementById("doplnokZ")
@@ -113,17 +127,19 @@ doplnokZena.onblur = function (){
     }else{
         ok(doplnokZena,chybaPohlavie);
     }
+    maxDoplnPohlavie.innerHTML = "";
 }
 
 /*DOPLNKOVE SLUZBY INE*/
 var ineDoplnkoveSluzby = document.getElementById("ine")
+var napisaneDoplnkoveSluzby = document.getElementById('doplnkoveSluz');
 ineDoplnkoveSluzby.onchange = function(){
-    let ineDoplnkoveSluz = document.getElementById('doplnkoveSluz');
+
     if (ineDoplnkoveSluzby.checked){
-        ineDoplnkoveSluz.style.display = 'block';
+        napisaneDoplnkoveSluzby.style.display = 'block';
     }
     else{
-        ineDoplnkoveSluz.style.display = 'none';
+        napisaneDoplnkoveSluzby.style.display = 'none';
     }
 }
 
@@ -145,6 +161,7 @@ telC.onblur = function (){
     }else if(vysledok === true){
         ok(telC,chybaTelC)
     }
+    maxTelC.innerHTML = "";
 }
 
 /*EMAIL*/
@@ -152,7 +169,7 @@ var email = document.getElementById("email");
 var chybaEmail = document.getElementById("chyba-email")
 email.onblur = function (){
     let cislo = email.value;
-    let pattern = /^[a-zA-Z0-9.-_]{3,}[@][a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,4}$/;
+    let pattern = /^[a-zA-Z0-9.-_]{3,}[@]{1,1}[a-zA-Z.-]{2,}[.]{1,1}[a-zA-Z]{2,4}$/;
     let vysledok = pattern.test(cislo);
     if( cislo === null || cislo === ""){
         email.style.border = '1px solid black';
@@ -164,6 +181,7 @@ email.onblur = function (){
     }else if(vysledok === true){
         ok(email,chybaEmail);
     }
+    maxEmail.innerHTML = "";
 }
 
 /*KONTROLA VEK-DATUM NARODENIA*/
@@ -174,30 +192,28 @@ var chybaDatum = document.getElementById("chyba-datum")
 
 var vypocitanyVek = null;
 
-//document.getElementById("datum").addEventListener("blur", function() {
 datumNarodenia.onblur = function (){
     let tmp = this.value;
     let datum = new Date(tmp);
-    console.log(datum)
     let aktCas = new Date();
     let diff = aktCas - datum;
     vypocitanyVek = Math.floor(diff/(31556952000));
-    console.log(vypocitanyVek)
-
     if(diff < 0){
         vypocitanyVek = NaN;
         chyba(datumNarodenia,chybaDatum,"nemôžeš sa narodiť neskôr ako dnes");
     } else if( diff/(31556952000) > 122 ) {
         vypocitanyVek = NaN;
         chyba(datumNarodenia,chybaDatum,"narodil si sa pred rokom 1900");
-    } else if((vek.value != null || vek.value != "") && vek.value == vypocitanyVek){
+    } else if((vek.value != null || vek.value !== "") && vek.value == vypocitanyVek){
         vek.placeholder = vypocitanyVek;
         ok(datumNarodenia,chybaDatum);
     } else if(datum == "Invalid Date"){
-        vypocitanyVek = Nan
+        vypocitanyVek = NaN;
         chyba(datumNarodenia,chybaDatum,"toto pole je povinné")
-    }
-    else{
+    }else if(vek.value == null || vek.value == ""){
+        vek.placeholder = vypocitanyVek;
+        ok(datumNarodenia,chybaDatum);
+    }else{
         vypocitanyVek = NaN;
         chyba(datumNarodenia,chybaDatum,"dátum narodenia sa nezhoduje s uvedeným vekom")
     }
@@ -214,6 +230,14 @@ vek.onblur = function () {
     } else {
         ok(vek,chybaVek);
     }
+    maxVek.innerHTML = "";
+}
+/*TEXTAREA*/
+
+var choroby = document.getElementById("choroby")
+
+choroby.onblur=function (){
+    maxChoroby.innerHTML = "";
 }
 
 /*POVINNE MENO PRIEZVISKO*/
@@ -229,6 +253,7 @@ meno.onblur = function (){
     }else {
         ok(meno,chybaMeno);
     }
+    maxMeno.innerHTML = "";
 }
 
 priezvisko.onblur = function (){
@@ -238,7 +263,10 @@ priezvisko.onblur = function (){
     }else {
         ok(priezvisko,chybaPriezvisko);
     }
+    maxPriezvisko.innerHTML = "";
 }
+
+/*ZISTENIE CENY*/
 
 /* funkcie na chbove hlasenia a ich vymazanie*/
 function chyba(kto,kam,hlaska){
@@ -252,6 +280,12 @@ function ok(kto,kam){
     kto.style.border = '2px solid green';
     kto.style.background = 'white'
     kam.innerHTML = "";
+}
+
+function maxChcek(kto ,kam , kolko){
+    let tmp = kto.value;
+    let cislo = tmp.length;
+    kam.innerHTML = cislo + "/" + kolko;
 }
 
 /*VALIDATE PRED SUBMITOM*/
@@ -295,6 +329,12 @@ function validujPredOdoslanim() {
         chybaPohlavie.innerHTML = "toto pole je povinné"
         flag = false;
     }
+    /*if(pohlavieMuz.checked && doplnokMuz.style.display === '2px solid red') {
+        flag = false;
+    }
+    if(pohlavieMuz.checked && doplnokMuz.style.display === '2px solid red'){
+        flag = false;
+    }*/
     //telefon
     if (telC.style.display === '2px solid red' ){
         flag = false;
@@ -306,25 +346,25 @@ function validujPredOdoslanim() {
     return flag;
 }
 
-var odoslat = document.getElementById("odoslat");
-odoslat.onclick = function (){
-    let tmp = validujPredOdoslanim()
-    if(tmp){
-        //otvor dalsie okno
+var buttonMeno = document.getElementById("odokry-meno")
+var menoOutput = document.getElementById("moje-meno")
+menoOutput.style.display = 'none';
+
+buttonMeno.onclick = function(){
+    if(menoOutput.style.display === 'none'){
+        menoOutput.style.display = 'block';
     }
+    else {menoOutput.style.display = 'none'}
 }
 
-/*function posliMail(){
-    Email.send({
-        Host : "smtp.gmail.dsa",
-        Username : "marianknazo@gmail.com",
-        Password : "9gf3swjn",
-        To : "xknazovicky@stuba.sk",
-        From : email.value,
-        Subject: "test mailu",
-        Body: "sprava",
-    }).then(message=>alert(message))
-}*/
+var prehlad = document.getElementById("prehlad");
+prehlad.onclick = function (){
+    let tmp = validujPredOdoslanim();
+    /*if(tmp){
+        modal() // otvor prehlad
+    }*/
+    modal()
+}
 
 //peeling - tvare chgrbta tela ruk
 //masaz tvare - 5 10 15 minut -- kozmeticka
@@ -338,26 +378,141 @@ odoslat.onclick = function (){
 //otazka muz/zena - porody/bolestiva pravidelna menstruacia muz-fajciar/cukrovnka
 
 /*CVICENIE 5*/
-/*
-function poloade(){
-var btn = get elementbyID()};
-btn.addEventListener("click",nejaka funkcia");
 
-function najaka funkcia(){
-    var closeBtn = document.createElement("span");
+/*zistenie ceny*/
+
+function zistiCenuCombo(){
+    let tmp = vypisKoniec.value;
+    let cena = tmp.slice(-4,-2);
+    cena = cena * 1;
+    return cena;
+}
+
+var sauna = document.getElementById("sauna");
+var manikura = document.getElementById("manikura");
+var pedikura = document.getElementById("pedikura");
+
+var cena;
+
+function modal(){
+    let closeBtn = document.createElement("span");
     closeBtn.classList.add("close");
-    CloseBtn.innerHTML = "&times";
+    closeBtn.innerHTML = "&times";
 
-    var modalContent = document.createElement("div").classList.add("modal-content");
+    let modalContent = document.createElement("div");
+    modalContent.classList.add("modal-content");
     modalContent.appendChild(closeBtn);
 
-    var text = "toto je nejaky text vo vrstve nad
-    var par = document.createElement("p");
-    par.innerHTML = text;
-    modalContent.appendChild(par);
+    let modalNadpis = document.createElement("p");
+    modalNadpis.style.fontSize = "2em";
+    modalNadpis.style.fontWeight = "bold";
+    modalNadpis.innerHTML = "Zhrnutie objednávky:";
+    modalContent.appendChild(modalNadpis);
 
-    var vrstvaNad = document.getElementById("vrstvaNad");
-    vrstvaNad.innerHTML = ""; // vycisitenie predosleho pri  znovuotvoreni
+    let modalMeno = document.createElement("p");
+    modalMeno.innerHTML = "Meno: " + meno.value;
+    modalContent.appendChild(modalMeno);
+
+    let modalPriezvisko = document.createElement("p");
+    modalPriezvisko.innerHTML = "Priezvisko: " + priezvisko.value;
+    modalContent.appendChild(modalPriezvisko);
+
+    let modalDatum = document.createElement("p");
+    modalDatum.innerHTML = "Dátum narodenia: " + datumNarodenia.value;
+    modalContent.appendChild(modalDatum);
+
+    let modalVek = document.createElement("p");
+    modalVek.innerHTML = "Vek: " + vek.value;
+    modalContent.appendChild(modalVek);
+
+    let modalPohlavie = document.createElement("p");
+    if(pohlavieMuz.checked){
+        modalPohlavie.innerHTML = "Pohlavie: Muž" ;
+        modalContent.appendChild(modalPohlavie);
+        if(doplnokMuz.value !== ""){
+            let modalDoplnok = document.createElement("p");
+            modalDoplnok.innerHTML = "Váha: " +doplnokMuz.value;
+            modalContent.appendChild(modalDoplnok);
+        }
+    }
+    if(pohlavieZena.checked){
+        modalPohlavie.innerHTML = "Pohlavie: Žena";
+        modalContent.appendChild(modalPohlavie);
+        if(doplnokZena.value !== ""){
+            let modalDoplnok = document.createElement("p");
+            modalDoplnok.innerHTML = "Výška: " +doplnokZena.value;
+            modalContent.appendChild(modalDoplnok);
+        }
+    }
+
+    if(telC.value !== "") {
+        let modalTelC = document.createElement("p");
+        modalTelC.innerHTML = "Telefónne číslo: " + telC.value;
+        modalContent.appendChild(modalTelC);
+    }
+
+    if(email.value !== "") {
+        let modalEmail = document.createElement("p");
+        modalEmail.innerHTML = "email: " + email.value;
+        modalContent.appendChild(modalEmail);
+    }
+
+    let modalProcedura = document.createElement("p");
+    modalProcedura.innerHTML = "Procedúra: " + vypisStred.value + " " + vypisKoniec.value.slice(0,-5);
+    modalContent.appendChild(modalProcedura);
+
+    cena = zistiCenuCombo();
+
+    let modalDoplkoveSluzby = document.createElement("p");
+    modalDoplkoveSluzby.innerHTML = "Doplnové služby: "
+    let flagDoplnkoveSluzby = false;
+    if(sauna.checked){
+        flagDoplnkoveSluzby = true;
+        modalDoplkoveSluzby.innerHTML = modalDoplkoveSluzby.innerHTML + "Sauna, ";
+        cena += 20;
+    }
+    if(manikura.checked){
+        flagDoplnkoveSluzby = true;
+        modalDoplkoveSluzby.innerHTML = modalDoplkoveSluzby.innerHTML + "Manikúra, ";
+        cena += 15;
+    }
+    if(pedikura.checked){
+        flagDoplnkoveSluzby = true;
+        modalDoplkoveSluzby.innerHTML = modalDoplkoveSluzby.innerHTML + "Pedikúra, ";
+        cena += 17;
+    }
+    if(ineDoplnkoveSluzby.checked){
+        flagDoplnkoveSluzby = true;
+        modalDoplkoveSluzby.innerHTML = modalDoplkoveSluzby.innerHTML + napisaneDoplnkoveSluzby.value;
+    }
+    if(flagDoplnkoveSluzby){
+        if(!ineDoplnkoveSluzby.checked){
+            modalDoplkoveSluzby.innerHTML = modalDoplkoveSluzby.innerHTML.substring(0, modalDoplkoveSluzby.innerHTML.length - 2);
+        }
+        modalContent.appendChild(modalDoplkoveSluzby);
+    }
+
+    if(choroby.value !== "") {
+        let modalChoroby = document.createElement("p");
+        modalChoroby.innerHTML = "Uvedené choroby: " + choroby.value;
+        modalContent.appendChild(modalChoroby);
+    }
+
+    let modalCena = document.createElement("p");
+    modalCena.innerHTML = "Celková cena: " + cena + "€";
+    if(ineDoplnkoveSluzby.checked){
+        modalCena.innerHTML= modalCena.innerHTML + " + sa bude odvíjať od doplnkových služieb";
+    }
+    modalContent.appendChild(modalCena);
+
+    let sendBtn = document.createElement("button");
+    sendBtn.type = "submit";
+    sendBtn.classList.add("odoslat");
+    sendBtn.innerHTML = "Odoslať";
+    modalContent.appendChild(sendBtn);
+
+    let vrstvaNad = document.getElementById("vrstvaNad");
+    vrstvaNad.innerHTML = "";
 
     vrstvaNad.appendChild(modalContent)
 
@@ -368,10 +523,4 @@ function najaka funkcia(){
     })
 }
 
-modal z index > 0;
-https://www.w3schools.com/howto/howto_css_modals.asp
-
-
-nove okno, vytvorit dinamicky nove okno prazdne divko v html
-*/
 

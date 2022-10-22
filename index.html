@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
     <title>Wellness formulár</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -18,29 +18,36 @@
 
     <h3>Osobné údaje</h3>
 
-    <form>
-        <input type="hidden">
-        <input type="hidden">
-        <input type="hidden">
-        <input type="hidden">
-        <input type="hidden">
-        <input type="hidden">
-        <input type="hidden">
+    <form action="https://form2mail.hynix.sk/form2mail.php" method="post" enctype="multipart/form-data" >
 
-        <div class="riadok"><!-- onclick ="nejaka js funkcia"-->
-            <div >
+        <input type="hidden" name="apikey" value="5776c216dec9deff124f3842d85d951c">
+        <input type="hidden" name="from" value="marianknazo@gmail.com">
+        <input type="hidden" name="sender" value="majoo">
+        <input type="hidden" name="to" value="xknazovicky@stuba.sk">
+        <input type="hidden" name="subject" value="test">
+        <input type="hidden" name="redirectOk" value="https://www.google.sk/?hl=sk">
+        <input type="hidden" name="redirectFalse" value="https://www.google.sk/?hl=sk">
+
+<!--5776c216dec9deff124f3842d85d951c-->
+
+        <div class="riadok">
+            <div>
                 <label for="k-meno">*Meno:</label>
                 <br>
-                <input type="text" id="k-meno" placeholder="Krstné meno">
+                <input type="text" id="k-meno" placeholder="Krstné meno" maxlength="15"
+                       onkeyup="maxChcek(meno,maxMeno,15)">
                 <br>
+                <p class="maxChar" id="max-meno"></p>
                 <p class="chyba" id="chyba-meno"></p>
             </div>
 
             <div>
                 <label for="p-meno">*Priezvisko:</label>
                 <br>
-                <input type="text" id="p-meno" placeholder="Priezvisko" >
+                <input type="text" id="p-meno" placeholder="Priezvisko" maxlength="20"
+                       onkeyup="maxChcek(priezvisko,maxPriezvisko,20)">
                 <br>
+                <p class="maxChar" id="max-priezvisko"></p>
                 <p class="chyba" id="chyba-priezvisko"></p>
             </div>
         </div>
@@ -57,8 +64,10 @@
             <div>
                 <label for="vek">*Vek:</label>
                 <br>
-                <input type="text" id="vek" placeholder="Váš vek" >
+                <input type="number" id="vek" placeholder="Váš vek"
+                       oninput="this.value=this.value.slice(0,3)" onkeyup="maxChcek(vek,maxVek,3)">
                 <br>
+                <p class="maxChar" id="max-vek"></p>
                 <p class="chyba" id="chyba-vek"></p>
             </div>
         </div>
@@ -66,19 +75,25 @@
         <div class="riadok">
             <div>
                 <label>*Pohalvie:</label>
-                    <br><label for="pohlavieM" class="radiocheck">muž</label>
-                    <input type="radio" name="pohlavie" id="pohlavieM" class="radiocheck">
-                    <br><label for="pohlavieZ" class="radiocheck">žena</label>
+                <br><label for="pohlavieM" class="radiocheck">Muž</label>
+                <input type="radio" name="pohlavie" id="pohlavieM" class="radiocheck">
+                <br><label for="pohlavieZ" class="radiocheck">Žena</label>
                 <input type="radio" name="pohlavie" id="pohlavieZ" class="radiocheck">
                 <br>
                 <p class="chyba" id="chyba-pohlavie"></p>
             </div>
-            <div >
+            <div>
                 <label for="doplnokM" id="labelDoplnokM">Koľko vážite? (kg)</label>
-                   <br id="zlomM"><input type="number" id="doplnokM" placeholder="70" >
+                <br id="zlomM"><input type="number" id="doplnokM" placeholder="70"
+                                      oninput="this.value=this.value.slice(0,3)"
+                                      onkeyup="maxChcek(doplnokMuz,maxDoplnPohlavie,3)">
 
                 <label for="doplnokZ" id="labelDoplnokZ">Koľko meriate? (cm)</label>
-                    <br id="zlomZ"><input type="number" id="doplnokZ" placeholder="170">
+                <br id="zlomZ"><input type="number" id="doplnokZ" placeholder="170"
+                                      oninput="this.value=this.value.slice(0,3)"
+                                      onkeyup="maxChcek(doplnokZena,maxDoplnPohlavie,3)">
+                <br>
+                <p class="maxChar" id="max-doplnok-pohlavie"></p>
             </div>
         </div>
         <hr>
@@ -87,16 +102,20 @@
         <div class="riadok">
             <div>
                 <label for="telC">telefónne číslo: </label>
-                    <br>
-                <input id="telC" type="text" placeholder="+000 000 000 000" >
                 <br>
+                <input id="telC" type="text" placeholder="+000 000 000 000" maxlength="16"
+                       onkeyup="maxChcek(telC,maxTelC,16)">
+                <br>
+                <p class="maxChar" id="max-telefon"></p>
                 <p class="chyba" id="chyba-telefon"></p>
             </div>
 
             <div>
                 <label for="email">e-mail:</label>
-                    <br><input id="email" type="email" placeholder="name@example.com">
+                <br><input id="email" type="email" placeholder="name@example.com" maxlength="30"
+                           onkeyup="maxChcek(email,maxEmail,30)">
                 <br>
+                <p class="maxChar" id="max-email"></p>
                 <p class="chyba" id="chyba-email"></p>
             </div>
         </div>
@@ -112,13 +131,12 @@
             </div>
             <div>
                 <label for="stred"></label>
-                <select id="stred">
-                </select>
+                <select id="stred"></select>
             </div>
 
             <div>
-                <label for="koniec">
-                </label><select id="koniec"></select>
+                <label for="koniec"></label>
+                <select id="koniec"></select>
             </div>
 
         </div>
@@ -127,17 +145,17 @@
         <div class="dalsie" id="dalsie">
 
             <div>
-                <label for="sauna" class="radiocheck"> Sauna (10€) </label>
-                    <input id="sauna" type="checkbox" class="radiocheck">
+                <label for="sauna" class="radiocheck"> Sauna (20€) </label>
+                <input id="sauna" type="checkbox" class="radiocheck">
 
             </div>
             <div>
-                <label for="manikura" class="radiocheck"> Manikúra (10€)</label>
-                    <input id="manikura" type="checkbox" class="radiocheck">
+                <label for="manikura" class="radiocheck"> Manikúra (15€)</label>
+                <input id="manikura" type="checkbox" class="radiocheck">
 
             </div>
             <div>
-                <label for="pedikura" class="radiocheck"> Pedikúra (10€)</label>
+                <label for="pedikura" class="radiocheck"> Pedikúra (17€)</label>
                 <input id="pedikura" type="checkbox" class="radiocheck">
 
 
@@ -157,15 +175,23 @@
         <div class="riadok">
             <div>
                 <label for="choroby"> Uveďte akými chorobami trpíte:</label>
-                    <br>
-                <textarea id="choroby" placeholder="Uveďte"></textarea>
+                <br>
+                <textarea id="choroby" placeholder="Uveďte" maxlength="100"
+                          onkeyup="maxChcek(choroby,maxChoroby,100)"></textarea>
+                <br>
+                <p class="maxChar" id="max-choroby"></p>
+            </div>
+            <div>
+                <button type="button" id="odokry-meno">Meno</button>
+                <br>
+                <output id="moje-meno">Marián Kňazovický</output>
             </div>
         </div>
 
 
         <div class="riadok">
             <div>
-                <button id="odoslat">Odoslať</button>
+                <button type="button" id="prehlad">Prehľad</button>
             </div>
         </div>
 
@@ -175,12 +201,12 @@
 
     </form>
 
-
 </section>
 
 <footer>
 </footer>
 
 <script src="js/script.js"></script>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
 </body>
 </html>

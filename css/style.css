@@ -21,12 +21,7 @@
         display: none;
     }
 
-    input{
-        width: 50vw;
-        padding: 10px;
-    }
-
-    select{
+    input,select{
         width: 50vw;
         padding: 10px;
     }
@@ -52,7 +47,7 @@
         display: grid;
         grid: auto / auto auto auto;
         margin-left: 10%;
-        margin-right: 27%;
+        margin-right: 21%;
     }
 
     .drop-downy label{
@@ -98,23 +93,17 @@ header{
     margin-right: 2%;
     margin-left: 2%;
     color: white;
-    height: 50px;
+    min-height: 50px;
+    height: auto;
 }
 
 footer{
     height: 50px;
 }
 
-
-
-
-
-
 .radiocheck{
     width: 3em;
 }
-
-
 
 label {
     width: 15em;
@@ -132,14 +121,19 @@ div {
     margin-bottom: 15px;
 }
 
-
-
 .chyba{
     padding: 0;
     margin: 0;
     font-size: small;
     height: 10px;
     color:red;
+}
+
+.maxChar{
+    padding: 0;
+    margin: 0;
+    font-size: small;
+    height: 10px;
 }
 
 #doplnkoveSluz {
@@ -168,9 +162,51 @@ div {
     display: none;
 }
 
+#prehlad,#odokry-meno{
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: deepskyblue;
+    color: whitesmoke;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: rgba(100,100,100,0.7);
+}
+
+.modal-content {
+    background-color: lightgrey;
+    width: 80%;
+    height: auto;
+    padding: 30px;
+    margin-top: 10%;
+    margin-left: auto ;
+    margin-right: auto;
+    font-size: large;
+}
+
 .close{
-    width: 20px;
-    height: 20px;
-    background-color: coral;
+    float: right;
+    width: 15px;
+    height: 15px;
+    font-size: 1.6em;
+}
+
+.odoslat{
+    margin-left: 46%;
+    margin-right: auto;
+    font-size: 2em;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: deepskyblue;
+    color: whitesmoke;
 }
 
