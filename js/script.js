@@ -77,24 +77,40 @@ var chybaPohlavie = document.getElementById("chyba-pohlavie");
 pohlavieMuz.onchange = function(){
     document.getElementById("doplnokDiv").style.display = 'block';
     document.getElementById("zlomZ").style.display = 'none';
-    document.getElementById("doplnokZ").style.display = 'none';
+    doplnokZena.style.border = "2px solid grey"
+    doplnokZena.style.background = "white";
+    doplnokZena.value = "";
+    doplnokZena.style.display = 'none';
+    doplnokMuz.style.border = "2px solid grey"
+    doplnokMuz.style.background = "white";
+    doplnokMuz.value = "";
+    doplnokMuz.style.display = 'none';
     document.getElementById("labelDoplnokZ").style.display = 'none';
     document.getElementById("zlomM").style.display = 'block';
     document.getElementById("doplnokM").style.display = 'block';
     document.getElementById("labelDoplnokM").style.display = 'block';
     chybaPohlavie.innerHTML = ""
+    chybaDoplnPohlavie.innerHTML = ""
 }
 
 var pohlavieZena = document.getElementById("pohlavieZ")
 pohlavieZena.onchange = function(){
     document.getElementById("doplnokDiv").style.display = 'block';
     document.getElementById("zlomM").style.display = 'none';
-    document.getElementById("doplnokM").style.display = 'none';
+    doplnokMuz.style.border = "2px solid grey"
+    doplnokMuz.style.background = "white";
+    doplnokMuz.value = "";
+    doplnokMuz.style.display = 'none';
+    doplnokZena.style.border = "2px solid grey"
+    doplnokZena.style.background = "white";
+    doplnokZena.value = "";
+    doplnokZena.style.display = 'none';
     document.getElementById("labelDoplnokM").style.display = 'none';
     document.getElementById("zlomZ").style.display = 'block';
     document.getElementById("doplnokZ").style.display = 'block';
     document.getElementById("labelDoplnokZ").style.display = 'block';
     chybaPohlavie.innerHTML = ""
+    chybaDoplnPohlavie.innerHTML = ""
 }
 
 var chybaDoplnPohlavie = document.getElementById("chybaDoplPohlavie");
@@ -103,10 +119,11 @@ var doplnokMuz = document.getElementById("doplnokM")
 doplnokMuz.onblur = function (){
     let cislo = doplnokMuz.value;
     if( cislo === null || cislo === ""){
-        doplnokMuz.style.border = '1px solid black';
+        doplnokMuz.style.border = '2px solid grey';
         doplnokMuz.style.background = 'white'
         doplnokMuz.value = "";
         chybaPohlavie.innerHTML ="";
+        chybaDoplnPohlavie.innerHTML = ""
     } else if( cislo < 0){
         chyba(doplnokMuz,chybaDoplnPohlavie,"nemôžte vážiť menej ako 0kg")
     } else if( cislo > 300){
@@ -121,10 +138,11 @@ var doplnokZena = document.getElementById("doplnokZ")
 doplnokZena.onblur = function (){
     let cislo = doplnokZena.value;
     if( cislo === null || cislo === ""){
-        doplnokZena.style.border = '1px solid black';
+        doplnokZena.style.border = '2px solid grey';
         doplnokZena.style.background = 'white'
         doplnokZena.value = "";
         chybaPohlavie.innerHTML ="";
+        chybaDoplnPohlavie.innerHTML = ""
     } else if( cislo < 0){
         chyba(doplnokZena,chybaDoplnPohlavie,"nemôžte merať menej ako 0cm")
     }else if(cislo > 300){
@@ -132,7 +150,7 @@ doplnokZena.onblur = function (){
     }else{
         ok(doplnokZena,chybaDoplnPohlavie);
     }
-    //maxDoplnPohlavie.innerHTML = "";
+    maxDoplnPohlavie.innerHTML = "";
 }
 
 /*DOPLNKOVE SLUZBY INE*/
@@ -172,7 +190,7 @@ telC.onblur = function (){
     let vysledok = pattern.test(cislo);
 
     if( cislo === null || cislo === ""){
-        telC.style.border = '1px solid black';
+        telC.style.border = '2px solid grey';
         telC.style.background = 'white'
         telC.value = "";
         chybaTelC.innerHTML ="";
@@ -189,7 +207,11 @@ var email = document.getElementById("email");
 var chybaEmail = document.getElementById("chyba-email")
 email.onblur = function (){
     let cislo = email.value;
-    let pattern = /^[a-zA-Z0-9.-_]{3,}[@]{1,1}[a-zA-Z.-]{2,}[.]{1,1}[a-zA-Z]{2,4}$/;
+    //let pattern = /^[a-zA-Z0-9.-_]{3,}@[a-zA-Z.-]{2,}[*.]{1}[a-zA-Z]{2,4}$/;
+    //let pattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    //let pattern = /^(?:\.[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]{3,})+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]{2,4})*$/;
+    //let pattern = /^[^\s@]{3,}@[^\s@]+\.[^\s@]{2,4}$/;
+    let pattern = /^[a-z0-9._%+-]{3,}@[a-z0-9.-]*[.]+[a-z]{2,4}$/;
     let vysledok = pattern.test(cislo);
     if( cislo === null || cislo === ""){
         chyba(email,chybaEmail,"email je povinný")
@@ -261,6 +283,12 @@ vek.onblur = function () {
 var choroby = document.getElementById("choroby")
 choroby.onblur=function (){
     maxChoroby.innerHTML = "";
+    let cislo = choroby.value;
+    if( cislo === null || cislo === ""){
+        choroby.style.border = '2px solid grey';
+    } else{
+        choroby.style.border = '2px solid green';
+    }
 }
 
 /*POVINNE MENO PRIEZVISKO*/
@@ -289,7 +317,46 @@ priezvisko.onblur = function (){
     maxPriezvisko.innerHTML = "";
 }
 
-/*ZISTENIE CENY*/
+/*TERMIN*/
+var cas = document.getElementById("cas");
+var chybaCas = document.getElementById("chyba-cas")
+var den = document.getElementById("den");
+var chybaDen = document.getElementById("chyba-den")
+
+
+den.onblur = function (){
+    let tmp = this.value;
+    let datum = new Date(tmp);
+    let aktCas = new Date();
+    let diff = datum - aktCas;
+    if( den.value === null || den.value === ""){
+        chyba(den,chybaDen,"deň je povinný");
+    }else if(diff < 0){
+        chyba(den,chybaDen,"nemôžežte rezervovať skôr ako na zajtra");
+    }else{
+        ok(den,chybaDen);
+    }
+};
+
+cas.onblur = function (){
+    let cislo = this.value;
+    console.log(cislo);
+    if( cislo === null || cislo === ""){
+        chyba(cas,chybaCas,"čas je povinný");
+    }else if (cislo > "21:00" ){
+        chyba(cas,chybaCas,"objednať sa dá najviac na 21:00");
+    }else if( cislo < "09:00"){
+        chyba(cas,chybaCas,"objednať sa dá najmenej na 9:00");
+    }
+    else{
+        ok(cas,chybaCas);
+    }
+};
+
+
+function maxLengthInputNumber(kto,dlzka){
+    kto.value = kto.value.slice(0,dlzka);
+}
 
 /* funkcie na chbove hlasenia a ich vymazanie*/
 function chyba(kto,kam,hlaska){
@@ -363,6 +430,21 @@ function validujPredOdoslanim() {
         flag = false;
     }
     if (email.style.display === '2px solid red' ){
+        flag = false;
+    }
+    //den cas
+    if((den.value === null || den.value === "")){
+        chyba(den,chybaDen,"deň je povinný");
+        flag = false;
+    }
+    if (den.style.display === '2px solid red' ){
+        flag = false;
+    }
+    if((cas.value === null || cas.value === "")){
+        chyba(cas,chybaCas,"čas je povinný");
+        flag = false;
+    }
+    if (cas.style.display === '2px solid red' ){
         flag = false;
     }
     // ine doplnky
@@ -507,6 +589,10 @@ function modal(){
         }
         modalContent.appendChild(modalDoplkoveSluzby);
     }
+
+    let modalDatumCas = document.createElement("p");
+    modalDatumCas.innerHTML = "Termín: " + den.value + " o " + cas.value;
+    modalContent.appendChild(modalDatumCas);
 
     if(choroby.value !== "") {
         let modalChoroby = document.createElement("p");

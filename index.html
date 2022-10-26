@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
     <title>Wellness formulár</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -18,13 +18,13 @@
 
     <h3>Osobné údaje</h3>
 
-    <form action="https://form2mail.hynix.sk/form2mail.php" method="post" enctype="multipart/form-data" >
+    <form action="https://form2mail.hynix.sk/form2mail.php" method="post" enctype="multipart/form-data">
 
         <input type="hidden" name="apikey" value="5776c216dec9deff124f3842d85d951c">
-        <input type="hidden" name="from" value="marianknazo@gmail.com">
-        <input type="hidden" name="sender" value="majoo">
+        <input type="hidden" name="from" value="xknazovicky@stuba.sk">
+        <input type="hidden" name="sender" value="Marián Kňazovický">
         <input type="hidden" name="to" value="xknazovicky@stuba.sk">
-        <input type="hidden" name="subject" value="test">
+        <input type="hidden" name="subject" value="Objednanie wellnes služieb">
         <input type="hidden" name="redirectOk" value="https://webte1.fei.stuba.sk/~xknazovicky/hidden2/">
         <input type="hidden" name="redirectFalse" value="https://www.google.sk/?hl=sk">
 
@@ -33,7 +33,7 @@
                 <label for="k-meno">*Meno:</label>
                 <br>
                 <input type="text" id="k-meno" placeholder="Krstné meno" maxlength="15"
-                       onkeyup="maxCheck(meno,maxMeno,15)" name="Meno">
+                       onkeyup="maxCheck(this,maxMeno,15)" name="Meno">
                 <br>
                 <p class="maxChar" id="max-meno"></p>
                 <p class="chyba" id="chyba-meno"></p>
@@ -43,7 +43,7 @@
                 <label for="p-meno">*Priezvisko:</label>
                 <br>
                 <input type="text" id="p-meno" placeholder="Priezvisko" maxlength="20"
-                       onkeyup="maxCheck(priezvisko,maxPriezvisko,20)" name="Priezvisko">
+                       onkeyup="maxCheck(this,maxPriezvisko,20)" name="Priezvisko">
                 <br>
                 <p class="maxChar" id="max-priezvisko"></p>
                 <p class="chyba" id="chyba-priezvisko"></p>
@@ -64,7 +64,7 @@
                 <label for="vek">*Vek:</label>
                 <br>
                 <input type="number" id="vek" placeholder="Váš vek" name="Vek"
-                       oninput="this.value=this.value.slice(0,3)" onkeyup="maxCheck(vek,maxVek,3)">
+                       oninput="maxLengthInputNumber(this,3)" onkeyup="maxCheck(this,maxVek,3)">
                 <br>
                 <p class="maxChar" id="max-vek"></p>
                 <p class="chyba" id="chyba-vek"></p>
@@ -74,7 +74,7 @@
         <div class="riadok">
             <div>
                 <label>*Pohalvie:</label>
-                <br><label for="pohlavieM" class="radiocheck" >Muž</label>
+                <br><label for="pohlavieM" class="radiocheck">Muž</label>
                 <input type="radio" name="Pohlavie" value="Muž" id="pohlavieM" class="radiocheck">
                 <br><label for="pohlavieZ" class="radiocheck">Žena</label>
                 <input type="radio" name="Pohlavie" value="Žena" id="pohlavieZ" class="radiocheck">
@@ -83,16 +83,16 @@
                 <p id="zarovnaj"></p>
             </div>
             <div id="doplnokDiv">
-                <label for="doplnokM" id="labelDoplnokM">Koľko vážite? (kg)</label>
+                <label for="doplnokM" id="labelDoplnokM">Vaša hmotnosť? (kg)</label>
                 <br id="zlomM"><input type="number" id="doplnokM" placeholder="70"
-                                      oninput="this.value=this.value.slice(0,3)"
-                                      onkeyup="maxCheck(doplnokMuz,maxDoplnPohlavie,3)"
+                                      oninput="maxLengthInputNumber(this,3)"
+                                      onkeyup="maxCheck(this,maxDoplnPohlavie,3)"
                                       name="Doplnok">
 
-                <label for="doplnokZ" id="labelDoplnokZ">Koľko meriate? (cm)</label>
+                <label for="doplnokZ" id="labelDoplnokZ">Vaša výška? (cm)</label>
                 <br id="zlomZ"><input type="number" id="doplnokZ" placeholder="170"
-                                      oninput="this.value=this.value.slice(0,3)"
-                                      onkeyup="maxCheck(doplnokZena,maxDoplnPohlavie,3)"
+                                      oninput="maxLengthInputNumber(this,3)"
+                                      onkeyup="maxCheck(this,maxDoplnPohlavie,3)"
                                       name="Doplnok">
                 <p class="maxChar" id="max-doplnok-pohlavie"></p>
                 <p class="chyba" id="chybaDoplPohlavie"></p>
@@ -106,7 +106,7 @@
                 <label for="telC">telefónne číslo: </label>
                 <br>
                 <input id="telC" type="tel" placeholder="+000 000 000 000" maxlength="16"
-                       onkeyup="maxCheck(telC,maxTelC,16)" name="Telefónne číslo">
+                       onkeyup="maxCheck(this,maxTelC,16)" name="Telefónne číslo">
                 <br>
                 <p class="maxChar" id="max-telefon"></p>
                 <p class="chyba" id="chyba-telefon"></p>
@@ -115,7 +115,7 @@
             <div>
                 <label for="email">*e-mail:</label>
                 <br><input id="email" type="email" placeholder="name@example.com" maxlength="30"
-                           onkeyup="maxCheck(email,maxEmail,30)" name="email">
+                           onkeyup="maxCheck(this,maxEmail,30)" name="email">
                 <br>
                 <p class="maxChar" id="max-email"></p>
                 <p class="chyba" id="chyba-email"></p>
@@ -163,15 +163,36 @@
 
             </div>
             <div>
-                <label for="ine" class="radiocheck" >iné</label><br class="zlom">
+                <label for="ine" class="radiocheck">iné</label><br class="zlom">
                 <input type="checkbox" id="ine" class="radiocheck">
                 <label for="doplnkoveSluz" style="display: none"></label>
-                <textarea placeholder="Uveďte aké" id="doplnkoveSluz" name="Doplnok"
+                <textarea placeholder="Uveďte aké" id="doplnkoveSluz" name="Doplnokvé služby"
                           maxlength="50"
-                          onkeyup="maxCheck(napisaneDoplnkoveSluzby,maxIneDoplnSluz,50)"></textarea>
+                          onkeyup="maxCheck(this,maxIneDoplnSluz,50)"></textarea>
                 <p class="maxChar" id="max-ineDoplnky"></p>
             </div>
 
+        </div>
+        <hr>
+        <h4>Termín</h4>
+        <div class="riadok">
+            <div>
+                <label for="den">*Deň:</label>
+                <br>
+                <input type="date" id="den" name="Deň">
+                <br>
+                <p class="maxChar"></p>
+                <p class="chyba" id="chyba-den"></p>
+            </div>
+
+            <div>
+                <label for="cas">*Čas:</label>
+                <br>
+                <input type="time" id="cas" name="Čas">
+                <br>
+                <p class="maxChar"></p>
+                <p class="chyba" id="chyba-cas"></p>
+            </div>
         </div>
 
         <hr>
@@ -181,20 +202,20 @@
                 <label for="choroby"> Uveďte akými chorobami trpíte:</label>
                 <br>
                 <textarea id="choroby" placeholder="Uveďte" maxlength="100"
-                          onkeyup="maxCheck(choroby,maxChoroby,100)" name="Vaše choroby"></textarea>
+                          onkeyup="maxCheck(this,maxChoroby,100)" name="Vaše choroby"></textarea>
 
                 <p class="maxChar" id="max-choroby"></p>
             </div>
             <div>
                 <button type="button" id="odokry-meno">Meno</button>
-                <output id="moje-meno">Marián Kňazovický</output>
+                <output id="moje-meno" name="Autor">Marián Kňazovický</output>
             </div>
         </div>
 
 
         <div class="riadok">
             <div>
-                <button type="button" id="prehlad" >Prehľad</button>
+                <button type="button" id="prehlad">Prehľad</button>
             </div>
         </div>
 
