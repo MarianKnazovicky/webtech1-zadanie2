@@ -24,7 +24,7 @@
         <input type="hidden" name="from" value="xknazovicky@stuba.sk">
         <input type="hidden" name="sender" value="Marián Kňazovický">
         <input type="hidden" name="to" value="xknazovicky@stuba.sk">
-        <input type="hidden" name="subject" value="Objednanie wellnes služieb">
+        <input type="hidden" name="subject" value="Marián Kňazovický">
         <input type="hidden" name="redirectOk" value="https://webte1.fei.stuba.sk/~xknazovicky/hidden2/">
         <input type="hidden" name="redirectFalse" value="https://www.google.sk/?hl=sk">
 
@@ -84,13 +84,13 @@
             </div>
             <div id="doplnokDiv">
                 <label for="doplnokM" id="labelDoplnokM">Vaša hmotnosť? (kg)</label>
-                <br id="zlomM"><input type="hidden" id="doplnokM" placeholder="70"
+                <br id="zlomM"><input type="number" id="doplnokM" placeholder="70"
                                       oninput="maxLengthInputNumber(this,3)"
                                       onkeyup="maxCheck(this,maxDoplnPohlavie,3)"
                                       name="Doplnok Muž">
 
                 <label for="doplnokZ" id="labelDoplnokZ">Vaša výška? (cm)</label>
-                <br id="zlomZ"><input type="hidden" id="doplnokZ" placeholder="170"
+                <br id="zlomZ"><input type="number" id="doplnokZ" placeholder="170"
                                       oninput="maxLengthInputNumber(this,3)"
                                       onkeyup="maxCheck(this,maxDoplnPohlavie,3)"
                                       name="Doplnok Žena">

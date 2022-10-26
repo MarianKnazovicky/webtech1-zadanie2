@@ -240,6 +240,7 @@ datumNarodenia.onblur = function (){
     let datum = new Date(tmp);
     let aktCas = new Date();
     let diff = aktCas - datum;
+    diff = diff - 86400000;
     vypocitanyVek = Math.floor(diff/(31556952000));
     if(diff < 0){
         vypocitanyVek = NaN;
@@ -344,7 +345,6 @@ den.onblur = function (){
 
 cas.onblur = function (){
     let cislo = this.value;
-    console.log(cislo);
     if( cislo === null || cislo === ""){
         chyba(cas,chybaCas,"čas je povinný");
     }else if (cislo > "21:00" ){
