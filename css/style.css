@@ -96,7 +96,7 @@
 body {
     background: deepskyblue;
     background-image: url("../image/wellnes.jpg");
-    background-size: 1920px 1200px;
+    background-size: 1920px 1450px;
 }
 
 section {
@@ -184,7 +184,7 @@ div {
 #prehlad,#odokry-meno{
     border: 1px solid black;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: deepskyblue;
     color: whitesmoke;
 }
